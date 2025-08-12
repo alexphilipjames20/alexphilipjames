@@ -17,6 +17,21 @@ export function Footer() {
     'Monitoring & Observability'
   ];
 
+  const socialLinks = [
+    {
+      href: 'https://github.com/alexphilipjames',
+      icon: Github,
+      label: 'GitHub',
+      ariaLabel: 'Visit Alex Philip James on GitHub'
+    },
+    {
+      href: 'https://www.linkedin.com/in/alexphilipjames/',
+      icon: Linkedin,
+      label: 'LinkedIn',
+      ariaLabel: 'Visit Alex Philip James on LinkedIn'
+    }
+  ];
+
   const handleNavClick = (href: string) => {
     const element = document.querySelector(href);
     if (element) {
@@ -33,25 +48,29 @@ export function Footer() {
               <span className="text-2xl font-bold text-accent">AP</span>
               <span className="ml-3 text-lg">Alex Philip</span>
             </div>
-            <p className="text-gray-300 mb-4">
+            <p className="text-gray-300 mb-6">
               Cloud Infra & DevOps Specialist with expertise in Kubernetes, AWS, and automation 
               helping organizations accelerate their cloud transformation journey.
             </p>
-            <div className="flex space-x-4">
-              <a 
-                href="https://github.com" 
-                className="text-gray-400 hover:text-accent transition-colors"
-                aria-label="GitHub"
-              >
-                <Github className="w-5 h-5" />
-              </a>
-              <a 
-                href="https://linkedin.com" 
-                className="text-gray-400 hover:text-accent transition-colors"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="w-5 h-5" />
-              </a>
+            
+            {/* Social Links Section */}
+            <div className="mb-6">
+              <h4 className="font-semibold mb-3 text-white">Connect With Me</h4>
+              <div className="flex space-x-4">
+                {socialLinks.map((social) => (
+                  <a 
+                    key={social.href}
+                    href={social.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={social.ariaLabel}
+                    className="flex items-center space-x-2 text-gray-300 hover:text-accent transition-colors p-2 rounded-lg hover:bg-white/10 group"
+                  >
+                    <social.icon className="w-5 h-5 group-hover:scale-110 transition-transform" />
+                    <span className="text-sm font-medium group-hover:text-accent">{social.label}</span>
+                  </a>
+                ))}
+              </div>
             </div>
           </div>
           
@@ -62,7 +81,7 @@ export function Footer() {
                 <li key={link.href}>
                   <button
                     onClick={() => handleNavClick(link.href)}
-                    className="text-gray-400 hover:text-accent transition-colors text-left"
+                    className="text-gray-400 hover:text-accent transition-colors text-left hover:underline"
                   >
                     {link.label}
                   </button>
@@ -75,7 +94,7 @@ export function Footer() {
             <h4 className="font-semibold mb-4">Specializations</h4>
             <ul className="space-y-2 text-gray-400">
               {specializations.map((spec, index) => (
-                <li key={index}>{spec}</li>
+                <li key={index} className="hover:text-gray-300 transition-colors">{spec}</li>
               ))}
             </ul>
           </div>
